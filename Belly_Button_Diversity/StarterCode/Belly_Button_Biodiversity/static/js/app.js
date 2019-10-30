@@ -6,19 +6,38 @@ function buildMetadata(sample) {
   var panel = d3.select("#sample-metadata");
     // Use `.html("") to clear any existing metadata
   panel.html("")
+
+  var table = panel.append("table");
+          //.attr("table-bordered");
     // Use d3 to select the panel with id of `#sample-metadata`
   d3.json(`/metadata/${sample}`).then(function(data) {
-    console.log(data);
+  console.log(data);
+  
+  
+  
     // Use `Object.entries` to add each key and value pair to the panel
-      Object.entries(data).forEach(([key, value]) => {
-      console.log(`key: ${key}, value: ${value}`);
-        panel.append("li").text(`${key}: ${value}`);
-      });
-      var WFREQ = data.WFREQ;
-      console.log(WFREQ);
-    });
-} 
+    Object.entries(data).forEach(([key, value]) => {
+    console.log(`key: ${key}, value: ${value}`);
+    var row = table.append("tr");
+    var cellKey = row.append("td");
+    var cellValue = row.append("td");
     
+    cellKey.text(key);
+    cellValue.text(value);
+      // panel.append("li").text(`${key}: ${value}`);
+    });
+    });
+    table.attr("table-bordered");
+};   
+//function allData() {
+  //tbody.html("");
+  //tableData.forEach((report) => {
+    //var row = tbody.append("tr");
+    //Object.entries(report).forEach(([key, value]) => {
+      //var cell = row.append("td");
+      //cell.text(value);
+    //});
+  //});   
 //function buildGauge()   
     
     // Hint: Inside the loop, you will need to use d3 to append new
@@ -79,8 +98,8 @@ function buildCharts(sample) {
     var data = [trace1];
     var layout = {
       title: "'Bar' Chart",
-      height: 600,
-      width: 800
+      height: 500,
+      width: 500
     };
     var PIE = document.getElementById("pie");
     Plotly.newPlot(PIE, data, layout);
@@ -109,6 +128,7 @@ function init() {
     console.log(firstSample.WFREQ)
     buildCharts(firstSample);
     buildMetadata(firstSample);
+    buildGauge(firstSample);
   });
 }
 
@@ -116,6 +136,7 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);
+  buildGauge(newSample);
 }
 
 // Initialize the dashboard
