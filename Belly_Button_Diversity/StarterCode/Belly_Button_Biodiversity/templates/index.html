@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Flask Plotlyjs Example</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Biodiversity</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
-  
+
+
 </head>
 
 <body>
@@ -22,40 +24,38 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
-        <div class="well text-info">
-          <h5>SELECT Sample:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+      <div class="col-md-2 p-0" style="z-index: 5;">
+        <div class="text-info">
+          
+          <select class="custom-select text-center" id="selDataset" onchange="optionChanged(this.value)">
+            <option selected>SELECT Sample</option>
+          </select>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Sample MetaData</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+        <div class="h5 text-info mt-3">Sample MetaData</div>
+        <div id="sample-metadata"></div>
+      </div>
+      <div class="col-md-5 p-0"style="z-index: 3;">
+        <div id="pie" class="pie p-0">
         </div>
       </div>
-      <div class="col-md-5 float-left">
-        <div id="pie" class="float-left">
-
+      <div class="col-md-5 p-0"style="z-index: 1;">
+        <div id="gauge" class="gauge p-0 text-center"></div>
       </div>
-      </div>
-      <div class="col-md-5">
-        <div id="gauge" class="gauge"></div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div id="bubble"></div>
-    </div>
-  </div>
-
-  <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+  <!--<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-  
+
 </body>
 
 </html>

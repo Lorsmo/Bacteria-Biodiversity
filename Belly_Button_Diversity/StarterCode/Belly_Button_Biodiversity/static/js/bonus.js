@@ -54,16 +54,16 @@ function buildGauge(sample) {
         textposition: "inside",
         marker: {
             colors: [
-                "rgba(0, 100, 0, .5)",
-                "rgba(14, 127, 0, .5)",
-                "rgba(100, 140, 15, .5)",
-                "rgba(130, 175, 30, .5)",
-                "rgba(170, 202, 42, .5)",
-                "rgba(202, 209, 95, .5)",
-                "rgba(210, 206, 145, .5)",
-                "rgba(232, 226, 202, .5)",
-                "rgba(240, 240, 240, 0.9)",
-                "rgba(255, 255, 255, 0.9)"
+                "rgba(0, 100, 0, 1)",
+                "rgba(14, 127, 0, 1)",
+                "rgba(100, 140, 15, 1)",
+                "rgba(130, 175, 30, 1)",
+                "rgba(170, 202, 42, 1)",
+                "rgba(202, 209, 95, 1)",
+                "rgba(210, 206, 145, 1)",
+                "rgba(232, 226, 202, 1)",
+                "rgba(240, 240, 240, 1)",
+                "rgba(0, 0, 0, 1)"
             ]
         },
         labels: [
@@ -85,6 +85,19 @@ function buildGauge(sample) {
     }];
 
     var layout = {
+        label: {
+            color: '#000'
+        },
+        title: {
+            text: "Belly Button Washing Frequency",
+            font: {
+              family: 'Courier New, monospace',
+              size: 18,
+              color: '#fff',
+            },
+        },
+        paper_bgcolor:'rgba(0,0,0,0)',
+        plot_bgcolor:'rgba(0,0,0,0)',
         shapes: [{
             type: 'path',
             path: path,
@@ -93,8 +106,8 @@ function buildGauge(sample) {
                 color: '850000'
             }
         }],
-        height: 400,
-        width: 400,
+        height: 500,
+        width: 600,
         xaxis: {
             zeroline: false, showticklabels: false,
             showgrid: false, range: [-1, 1]

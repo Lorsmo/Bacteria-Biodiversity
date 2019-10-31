@@ -1,64 +1,49 @@
-function buildMetadata(sample) {
 
-  // @TODO: Complete the following function that builds the metadata panel
+//----------------------------------------------------------------------------
+//---------------- Metadata Panel --------------------------------------------
+function buildMetadata(sample) {
   
   // Use `d3.json` to fetch the metadata for a sample
-  var panel = d3.select("#sample-metadata");
+  //var table = d3.select("#sample-metadata").append("table");
     // Use `.html("") to clear any existing metadata
-  panel.html("")
-
-  var table = panel.append("table");
-          //.attr("table-bordered");
-    // Use d3 to select the panel with id of `#sample-metadata`
+  var table = d3.select("#sample-metadata").html("").append("table");
+  //table.html("");
+  var thead = table.append("thead");
+  var trow = thead.append("tr")
+  trow.append("th").text("Parameter");
+  trow.append("th").text("Value");
+  var tbody = table.append("tbody");
+  //var table = panel.append("table");
+  // Use d3 to select the panel with id of `#sample-metadata`
   d3.json(`/metadata/${sample}`).then(function(data) {
   console.log(data);
   
-  
-  
-    // Use `Object.entries` to add each key and value pair to the panel
+    // Use `Object.entries` to add each key and value pair to the table
     Object.entries(data).forEach(([key, value]) => {
     console.log(`key: ${key}, value: ${value}`);
-    var row = table.append("tr");
-    var cellKey = row.append("td");
-    var cellValue = row.append("td");
+    var row = tbody.append("tr");
+    row.append("td").text(key);
+    row.append("td").text(value);
+    table.attr("class", "table table-bordered text-center thead-light table-dark table-hover table-sm table-striped");
     
-    cellKey.text(key);
-    cellValue.text(value);
-      // panel.append("li").text(`${key}: ${value}`);
     });
     });
-    table.attr("table-bordered");
 };   
-//function allData() {
-  //tbody.html("");
-  //tableData.forEach((report) => {
-    //var row = tbody.append("tr");
-    //Object.entries(report).forEach(([key, value]) => {
-      //var cell = row.append("td");
-      //cell.text(value);
-    //});
-  //});   
-//function buildGauge()   
-    
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
 
-    // BONUS: Build the Gauge Chart
-
-
-    // buildGauge(data.WFREQ);
-
-
+//----------------------------------------------------------------------------
+//---------------- Build Charts ----------------------------------------------
 function buildCharts(sample) {
 
   var bubble = d3.select("#bubble");
-  // @TODO: Use `d3.json` to fetch the sample data for the plots
+  // Use `d3.json` to fetch the sample data for the plots
   d3.json(`/samples/${sample}`).then(function(data) {
     console.log(data);
     var otuIds = data.otu_ids;
     var sampleValues = data.sample_values;
     var textValues = data.otu_labels;
     
+    //---------------- Bubble Chart ------------------------//
+    // Build a Bubble Chart using the sample data
     var trace1 = {
       x: otuIds,
       y: sampleValues,
@@ -74,21 +59,52 @@ function buildCharts(sample) {
     
     var layout = {
       title: `Sample: ${sample}`,
+      paper_bgcolor:'rgba(0,0,0,0)',
+      plot_bgcolor:'rgba(0,0,0,0)',
+      xaxis: {
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        mirror: 'ticks',
+        tickcolor: '#fff',
+        tickfont: {
+          size: 14,
+          color: 'rgba(255,255,255,1)'
+        },
+        zerolinecolor: '#fff',
+        zerolinewidth: 2,
+        gridcolor: '#343a40',
+        gridwidth: 1,
+        linecolor: '#636363',
+        linewidth: 6
+      },
+      yaxis: {
+        mirror: 'ticks',
+        tickcolor: '#fff',
+        tickfont: {
+          size: 14,
+          color: 'rgba(255,255,255,1)'
+        },
+        zerolinecolor: '#fff',
+        zerolinewidth: 2,
+        gridcolor: '#343a40',
+        gridwidth: 1,
+        linecolor: '#636363',
+        linewidth: 6
+      },
       showlegend: false,
       height: 600,
-      width: 1300
+      width: 1100
     };
     
     Plotly.newPlot("bubble", data, layout);
 
-  
- 
-    // @TODO: Build a Bubble Chart using the sample data
+    //---------------- Pie Chart ------------------------//
+    // Build a Pie Chart with the top 10 sample_values, otu_ids, and labels.
     var otuIds10 = otuIds.slice(0,10);
     var sampleValues10 = sampleValues.slice(0,10);
     var textValues10 = textValues.slice(0,10);
 
-   
     var trace1 = {
       labels: otuIds10,
       values: sampleValues10,
@@ -98,15 +114,28 @@ function buildCharts(sample) {
     var data = [trace1];
     var layout = {
       title: "'Bar' Chart",
+      margin: {
+        l: 30,
+        r: 30,
+        b: 50,
+        t: 50,
+        pad: 0
+      },
+      paper_bgcolor:'rgba(255,255,255,0)',
+      plot_bgcolor:'rgba(255,255,255,0)',
+      autosize: false,
       height: 500,
-      width: 500
+      width: 480,
+      legend: {
+      //orientation: "h",
+      font: {
+        family: 'sans-serif',
+        size: 12,
+        color: '#fff'
+      }},
     };
     var PIE = document.getElementById("pie");
     Plotly.newPlot(PIE, data, layout);
-
-    // @TODO: Build a Pie Chart
-    // HINT: You will need to use slice() to grab the top 10 sample_values,
-    // otu_ids, and labels (10 each).
   });
 };
 

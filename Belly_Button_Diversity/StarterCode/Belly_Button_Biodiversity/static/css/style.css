@@ -1,11 +1,39 @@
 .gauge {
-    max-height: calc(200px + 20px) !important;
+    max-height: calc(260px + 20px) !important;
     overflow:hidden;
 }
 .jumbotron {
-    background-color: black;
+    background-image: linear-gradient(rgba(10, 10, 82, 0.9), rgba(107, 107, 19, 0.9)),
+                  url("/static/images/microbes_sem.jpg");
 }
 
-.jumbotron h1 {
+/*body {
+    background: black;
+}*/
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.952), rgba(0, 0, 0, 0.932)),
+    url("/static/images/940.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+thead {
+    color: #343a40;
+    background-color: white!important;
+}
+
+
+.jumbotron h1, p{
+    color: rgb(255, 255, 255);
+}
+/*.table {
+    width: 90%;
+    margin-right: 2px;
     color: blue;
+    background-color: wheat;
+}*/
+
+table {
+    border-radius: 4%;
 }
