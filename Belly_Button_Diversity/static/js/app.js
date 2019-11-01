@@ -34,7 +34,6 @@ function buildMetadata(sample) {
 //---------------- Build Charts ----------------------------------------------
 function buildCharts(sample) {
 
-  var bubble = d3.select("#bubble");
   // Use `d3.json` to fetch the sample data for the plots
   d3.json(`/samples/${sample}`).then(function(data) {
     console.log(data);
@@ -58,7 +57,14 @@ function buildCharts(sample) {
     var data = [trace1];
     
     var layout = {
-      title: `Sample: ${sample}`,
+      title: {
+        text: `Abundance of Species (Sample ${sample})`,
+        font: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#fff',
+        },
+      }, 
       paper_bgcolor:'rgba(0,0,0,0)',
       plot_bgcolor:'rgba(0,0,0,0)',
       xaxis: {
@@ -71,8 +77,14 @@ function buildCharts(sample) {
           size: 14,
           color: 'rgba(255,255,255,1)'
         },
-        zerolinecolor: '#fff',
-        zerolinewidth: 2,
+        title: {
+          text: `Operational Taxonomic Unit ID`,
+          font: {
+            family: 'Courier New, monospace',
+            size: 16,
+            color: '#fff',
+          },
+        },  
         gridcolor: '#343a40',
         gridwidth: 1,
         linecolor: '#636363',
@@ -85,6 +97,14 @@ function buildCharts(sample) {
           size: 14,
           color: 'rgba(255,255,255,1)'
         },
+        title: {
+          text: `Abundance`,
+          font: {
+            family: 'Courier New, monospace',
+            size: 16,
+            color: '#fff',
+          },
+        },  
         zerolinecolor: '#fff',
         zerolinewidth: 2,
         gridcolor: '#343a40',
@@ -113,11 +133,18 @@ function buildCharts(sample) {
     };
     var data = [trace1];
     var layout = {
-      title: "'Bar' Chart",
+      title: {
+        text: `Belly Button Bacteria Repartition<br>(Sample ${sample})`,
+        font: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#fff',
+        },
+      },
       margin: {
-        l: 30,
+        l: 90,
         r: 30,
-        b: 50,
+        b: 0,
         t: 50,
         pad: 0
       },
@@ -125,7 +152,7 @@ function buildCharts(sample) {
       plot_bgcolor:'rgba(255,255,255,0)',
       autosize: false,
       height: 500,
-      width: 480,
+      width: 500,
       legend: {
       //orientation: "h",
       font: {

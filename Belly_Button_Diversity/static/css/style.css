@@ -1,5 +1,5 @@
 .gauge {
-    max-height: calc(260px + 20px) !important;
+    max-height: calc(280px + 20px) !important;
     overflow:hidden;
 }
 .jumbotron {

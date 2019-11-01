@@ -26,12 +26,14 @@
     <div class="row">
       <div class="col-md-2 p-0" style="z-index: 5;">
         <div class="text-info">
-          
-          <select class="custom-select text-center" id="selDataset" onchange="optionChanged(this.value)">
-            <option selected>SELECT Sample</option>
+          <label class="mdb-main-label">Sample Select</label>
+          <select class="custom-select button-primary" id="selDataset" onchange="optionChanged(this.value)">
+            <!--<option selected>SELECT Sample</option>-->
           </select>
+          
+        
+        <label class="mdb-main-label mt-5">Sample Metadata</label>
         </div>
-        <div class="h5 text-info mt-3">Sample MetaData</div>
         <div id="sample-metadata"></div>
       </div>
       <div class="col-md-5 p-0"style="z-index: 3;">
@@ -47,7 +49,15 @@
       <div class="col-md-12">
         <div id="bubble"></div>
       </div>
+     
     </div>
+    <div class="row">
+    <div class="text-white">
+      <p>More about the <a target="_blank" href="http://robdunnlab.com/projects/belly-button-biodiversity/">Belly Button Biodiversity</a></p>
+    </div>
+  </div>
+    
+      
   </div>
   <!--<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>

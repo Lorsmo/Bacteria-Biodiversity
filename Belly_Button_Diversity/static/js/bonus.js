@@ -63,7 +63,7 @@ function buildGauge(sample) {
                 "rgba(210, 206, 145, 1)",
                 "rgba(232, 226, 202, 1)",
                 "rgba(240, 240, 240, 1)",
-                "rgba(0, 0, 0, 1)"
+                "rgba(0, 0, 0, 0)"
             ]
         },
         labels: [
@@ -89,13 +89,20 @@ function buildGauge(sample) {
             color: '#000'
         },
         title: {
-            text: "Belly Button Washing Frequency",
+            text: `Belly Button Washing Frequency<br>Scrubs per Week (Sample ${sample})`,
             font: {
               family: 'Courier New, monospace',
               size: 18,
               color: '#fff',
             },
         },
+        margin: {
+            l: 60,
+            r: 30,
+            b: 0,
+            t: 50,
+            pad: 0
+          },
         paper_bgcolor:'rgba(0,0,0,0)',
         plot_bgcolor:'rgba(0,0,0,0)',
         shapes: [{
@@ -107,7 +114,7 @@ function buildGauge(sample) {
             }
         }],
         height: 500,
-        width: 600,
+        width: 450,
         xaxis: {
             zeroline: false, showticklabels: false,
             showgrid: false, range: [-1, 1]
