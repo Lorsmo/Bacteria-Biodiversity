@@ -2,19 +2,16 @@
 //----------------------------------------------------------------------------
 //---------------- Metadata Panel --------------------------------------------
 function buildMetadata(sample) {
-  
-  // Use `d3.json` to fetch the metadata for a sample
-  //var table = d3.select("#sample-metadata").append("table");
-    // Use `.html("") to clear any existing metadata
+
+  // Use d3 to select the panel with id of `#sample-metadata`
   var table = d3.select("#sample-metadata").html("").append("table");
-  //table.html("");
   var thead = table.append("thead");
   var trow = thead.append("tr")
   trow.append("th").text("Parameter");
   trow.append("th").text("Value");
   var tbody = table.append("tbody");
-  //var table = panel.append("table");
-  // Use d3 to select the panel with id of `#sample-metadata`
+
+  // Use `d3.json` to fetch the metadata for a sample
   d3.json(`/metadata/${sample}`).then(function(data) {
   console.log(data);
   
@@ -27,7 +24,7 @@ function buildMetadata(sample) {
     table.attr("class", "table table-bordered text-center thead-light table-dark table-hover table-sm table-striped");
     
     });
-    });
+  });
 };   
 
 //----------------------------------------------------------------------------
@@ -37,9 +34,9 @@ function buildCharts(sample) {
   // Use `d3.json` to fetch the sample data for the plots
   d3.json(`/samples/${sample}`).then(function(data) {
     console.log(data);
-    var otuIds = data.otu_ids;
-    var sampleValues = data.sample_values;
-    var textValues = data.otu_labels;
+    var otuIds = data.otu_ids,
+    sampleValues = data.sample_values,
+    textValues = data.otu_labels;
     
     //---------------- Bubble Chart ------------------------//
     // Build a Bubble Chart using the sample data
@@ -68,6 +65,14 @@ function buildCharts(sample) {
       paper_bgcolor:'rgba(0,0,0,0)',
       plot_bgcolor:'rgba(0,0,0,0)',
       xaxis: {
+        title: {
+          text: `Operational Taxonomic Unit ID`,
+          font: {
+            family: 'Courier New, monospace',
+            size: 16,
+            color: '#fff',
+          },
+        },
         showgrid: true,
         zeroline: true,
         showline: true,
@@ -77,26 +82,12 @@ function buildCharts(sample) {
           size: 14,
           color: 'rgba(255,255,255,1)'
         },
-        title: {
-          text: `Operational Taxonomic Unit ID`,
-          font: {
-            family: 'Courier New, monospace',
-            size: 16,
-            color: '#fff',
-          },
-        },  
         gridcolor: '#343a40',
         gridwidth: 1,
         linecolor: '#636363',
         linewidth: 6
       },
       yaxis: {
-        mirror: 'ticks',
-        tickcolor: '#fff',
-        tickfont: {
-          size: 14,
-          color: 'rgba(255,255,255,1)'
-        },
         title: {
           text: `Abundance`,
           font: {
@@ -105,6 +96,12 @@ function buildCharts(sample) {
             color: '#fff',
           },
         },  
+        mirror: 'ticks',
+        tickcolor: '#fff',
+        tickfont: {
+          size: 14,
+          color: 'rgba(255,255,255,1)'
+        },
         zerolinecolor: '#fff',
         zerolinewidth: 2,
         gridcolor: '#343a40',
@@ -121,9 +118,9 @@ function buildCharts(sample) {
 
     //---------------- Pie Chart ------------------------//
     // Build a Pie Chart with the top 10 sample_values, otu_ids, and labels.
-    var otuIds10 = otuIds.slice(0,10);
-    var sampleValues10 = sampleValues.slice(0,10);
-    var textValues10 = textValues.slice(0,10);
+    var otuIds10 = otuIds.slice(0,10),
+    sampleValues10 = sampleValues.slice(0,10),
+    textValues10 = textValues.slice(0,10);
 
     var trace1 = {
       labels: otuIds10,
@@ -144,17 +141,17 @@ function buildCharts(sample) {
       margin: {
         l: 90,
         r: 30,
-        b: 0,
+        b: 50,
         t: 50,
         pad: 0
       },
       paper_bgcolor:'rgba(255,255,255,0)',
       plot_bgcolor:'rgba(255,255,255,0)',
       autosize: false,
-      height: 500,
+      height: 550,
       width: 500,
       legend: {
-      //orientation: "h",
+      orientation: "h",
       font: {
         family: 'sans-serif',
         size: 12,

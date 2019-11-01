@@ -8,9 +8,7 @@
   <title>Biodiversity</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 
 </head>
 
@@ -28,40 +26,35 @@
         <div class="text-info">
           <label class="mdb-main-label">Sample Select</label>
           <select class="custom-select button-primary" id="selDataset" onchange="optionChanged(this.value)">
-            <!--<option selected>SELECT Sample</option>-->
           </select>
-          
-        
-        <label class="mdb-main-label mt-5">Sample Metadata</label>
+          <label class="mdb-main-label mt-5">Sample Metadata</label>
         </div>
         <div id="sample-metadata"></div>
       </div>
-      <div class="col-md-5 p-0"style="z-index: 3;">
+      <div class="col-md-5 p-0" style="z-index: 3;">
         <div id="pie" class="pie p-0">
         </div>
       </div>
-      <div class="col-md-5 p-0"style="z-index: 1;">
+      <div class="col-md-5 p-0" style="z-index: 1;">
         <div id="gauge" class="gauge p-0 text-center"></div>
       </div>
     </div>
-  
     <div class="row">
       <div class="col-md-12">
         <div id="bubble"></div>
       </div>
-     
     </div>
     <div class="row">
-    <div class="text-white">
-      <p>More about the <a target="_blank" href="http://robdunnlab.com/projects/belly-button-biodiversity/">Belly Button Biodiversity</a></p>
+      <div class="text-white">
+        <p>More about the <a target="_blank" href="http://robdunnlab.com/projects/belly-button-biodiversity/">
+          Belly Button Biodiversity</a></p>
+      </div>
     </div>
   </div>
-    
-      
-  </div>
-  <!--<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>

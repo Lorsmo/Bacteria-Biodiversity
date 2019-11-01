@@ -1,6 +1,10 @@
-function buildGauge(sample) {
-    d3.json(`/metadata/${sample}`).then(function (data) {
+//---------------- Gauge Chart ------------------------//
+// Build a Gauge Chart using the sample data
 
+function buildGauge(sample) {
+
+    // Use `d3.json` to fetch the sample data for the gauge chart
+    d3.json(`/metadata/${sample}`).then(function (data) {
     var WFREQ = data.WFREQ;
     console.log(WFREQ);
     var degrees = 180 - WFREQ * 20,
@@ -9,7 +13,6 @@ function buildGauge(sample) {
     var x = radius * Math.cos(radians);
     var y = radius * Math.sin(radians);
     var path1 = (degrees < 45 || degrees > 135) ? 'M -0.0 -0.025 L 0.0 0.025 L ' : 'M -0.025 -0.0 L 0.025 0.0 L ';
-    // Path: may have to change to create a better triangle
     var mainPath = path1,
         pathX = String(x),
         space = ' ',
