@@ -34,9 +34,9 @@ function buildCharts(sample) {
   // Use `d3.json` to fetch the sample data for the plots
   d3.json(`/samples/${sample}`).then(function(data) {
     console.log(data);
-    var otuIds = data.otu_ids,
-    sampleValues = data.sample_values,
-    textValues = data.otu_labels;
+    let otuIds = data.otu_ids;
+    let sampleValues = data.sample_values;
+    let textValues = data.otu_labels;
     
     //---------------- Bubble Chart ------------------------//
     // Build a Bubble Chart using the sample data
@@ -47,7 +47,8 @@ function buildCharts(sample) {
       mode: 'markers',
       marker: {
         color: otuIds,
-        size: sampleValues
+        size: sampleValues,
+        colorscale: "Earth"
       }
     };
     
@@ -118,14 +119,15 @@ function buildCharts(sample) {
 
     //---------------- Pie Chart ------------------------//
     // Build a Pie Chart with the top 10 sample_values, otu_ids, and labels.
-    var otuIds10 = otuIds.slice(0,10),
-    sampleValues10 = sampleValues.slice(0,10),
-    textValues10 = textValues.slice(0,10);
+    let otuIds10 = otuIds.slice(0,10);
+    let sampleValues10 = sampleValues.slice(0,10);
+    let textValues10 = textValues.slice(0,10);
 
     var trace1 = {
       labels: otuIds10,
       values: sampleValues10,
-      hoverinfo: textValues10,
+      hovertext: textValues10,
+      hoverinfo: 'hovertext',
       type: 'pie'
     };
     var data = [trace1];
