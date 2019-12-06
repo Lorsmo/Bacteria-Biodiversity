@@ -11,7 +11,12 @@
 ## Objective:
 The purpose of the The Bacteria Biodiversity project is to present the dataset from the sample taking as an interactive dashboard. This dataset contains the characteristics of the persons from whom the samples were taken, the various bacteria found near their belly button, the quantity of each of them as well as the navel washing frequency.
 
-This project used Python, Flask, JavaScript, CSS, Plotly.JS, HTML and Bootstrap to explore the dataset.
+A table and three charts were built using Javascript and Plotly.
+- The pie chart shows the first ten bacteria species for a sample id.
+- The gauge chart shows the belly button washing frequency.
+- The bubble chart shows all the species and their Operational Taxonomic Unit (OTU) ID.
+
+This project also used Python, Flask, CSS, HTML and Bootstrap to explore the dataset.
 
 ## Python, Flask
 
